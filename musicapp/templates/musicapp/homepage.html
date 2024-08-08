@@ -1,0 +1,167 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/homepage.css' %}">
+{% endblock %}
+
+{% block main %}
+
+<!-- Content goes here -->
+<section class="section-container">
+    <div class="div">
+    {% if topartists %}
+        <div class="title">
+            <h3>Top Artist</h3>
+        </div>
+        <div class="tiles scrollbar">
+            {% for artist in topartists %}
+                <a href="{% url 'musicapp:artistpage' artist.id %}">
+                    <div class="tile">
+                        {% if artist.user.image %}
+                            <img src="{{artist.user.image.url}}" alt="">
+                        {% else %}
+                            <img src="{% static 'images/avator.png' %}" alt="">
+                        {% endif %}
+                    <span class="songname">{{artist.user.username}}</span>
+                    </div>
+                </a>
+            {% endfor %}
+         </div>
+    {% endif %}
+    </div>
+    
+    <div class="div">
+    {% if topplaylists %}
+        <div class="title">
+            <h3>Top Playlists</h3>
+        </div>
+        <div class="tiles scrollbar">
+            {% for playlist in topplaylists %}
+                <a href="{% url 'musicapp:playlistpage' playlist.id %}">
+                    <div class="tile">
+                        {% if playlist.image %}
+                            <img src="{{playlist.image.url}}" alt="">
+                        {% else %}
+                            <img src="{% static 'images/avator.png' %}" alt="">
+                        {% endif %}
+                    <span class="songname">{{playlist.name}}</span>
+                    </div>
+                </a>
+            {% endfor %}
+         </div>
+    {% endif %}
+    </div>
+    
+    <div class="div">
+    {% if recentalbums %}
+        <div class="title">
+            <h3>Recent Albums</h3>
+        </div>
+        <div class="tiles scrollbar">
+            {% for album in recentalbums %}
+                <a href="{% url 'musicapp:albumpage' album.id %}">
+                    <div class="tile">
+                        {% if album.image %}
+                            <img src="{{album.image.url}}" alt="">
+                        {% else %}
+                            <img src="{% static 'images/avator.png' %}" alt="">
+                        {% endif %}
+                    <span class="songname">{{album.name}}</span>
+                    </div>
+                </a>
+            {% endfor %}
+         </div>
+    {% endif %}
+    </div>
+    
+    <div class="div">
+    {% if recentsongs %}
+        <div class="title">
+            <h3>Recent Songs</h3>
+        </div>
+        <div class="tiles scrollbar">
+            {% for song in recentsongs %}
+                <a href="{% url 'musicapp:songpage' song.id %}">
+                    <div class="tile">
+                        {% if song.album.image %}
+                            <img src="{{song.album.image.url}}" alt="">
+                        {% else %}
+                            <img src="{% static 'images/avator.png' %}" alt="">
+                        {% endif %}
+                    <span class="songname">{{song.name}}</span>
+                    </div>
+                </a>
+            {% endfor %}
+         </div>
+    {% endif %}
+    </div>
+    
+    <div class="div">
+    {% if followingartists %}
+        <div class="title">
+            <h3>Artist You Follow</h3>
+        </div>
+        <div class="tiles scrollbar">
+            {% for artist in followingartists %}
+                <a href="{% url 'musicapp:artistpage' artist.id %}">
+                    <div class="tile">
+                        {% if artist.image %}
+                            <img src="{{artist.image.url}}" alt="">
+                        {% else %}
+                            <img src="{% static 'images/avator.png' %}" alt="">
+                        {% endif %}
+                    <span class="songname">{{artist.name}}</span>
+                    </div>
+                </a>
+            {% endfor %}
+         </div>
+    {% endif %}
+    </div>
+    
+    <div class="div">
+    {% if followingplaylists %}
+        <div class="title">
+            <h3>Playlist You Follow</h3>
+        </div>
+        <div class="tiles scrollbar">
+            {% for playlist in followingplaylists %}
+                <a href="{% url 'musicapp:playlistpage' playlist.id %}">
+                    <div class="tile">
+                        {% if playlist.image %}
+                            <img src="{{playlist.image.url}}" alt="">
+                        {% else %}
+                            <img src="{% static 'images/avator.png' %}" alt="">
+                        {% endif %}
+                    <span class="songname">{{playlist.name}}</span>
+                    </div>
+                </a>
+            {% endfor %}
+         </div>
+    {% endif %}
+    </div>
+    
+    <div class="div">
+    {% if yourplaylists %}
+        <div class="title">
+            <h3>Your Playlist</h3>
+        </div>
+        <div class="tiles scrollbar">
+            {% for playlist in yourplaylists %}
+                <a href="{% url 'musicapp:playlistpage' playlist.id %}">
+                    <div class="tile">
+                        {% if playlist.image %}
+                            <img src="{{playlist.image.url}}" alt="">
+                        {% else %}
+                            <img src="{% static 'images/avator.png' %}" alt="">
+                        {% endif %}
+                    <span class="songname">{{playlist.name}}</span>
+                    </div>
+                </a>
+            {% endfor %}
+         </div>
+    {% endif %}
+    </div>
+</section>
+
+{% endblock %}

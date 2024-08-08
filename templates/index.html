@@ -1,0 +1,142 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% if title %}
+    <title>GC MUSIC | {{title}}</title>
+    {% else %}
+    <title>GC MUSIC</title>
+    {% endif %}
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css" rel="stylesheet"/>
+
+    <link href="{% static 'css/index.css' %}" rel="stylesheet">
+    <link href="{% static 'css/sidebar.css' %}" rel="stylesheet">
+    <link href="{% static 'css/formstyle.css' %}" rel="stylesheet">
+    {% block stylesheet %}
+    {% endblock %}
+</head>
+<body>
+    <header class="d-flex justify-content-between align-items-center px-4">
+        {% if request.user.usertype == 'artist' %}
+        <a href="{% url 'artistapp:homepage' %}">
+            <img src="{% static 'images/logo.png' %}" alt="Logo" class="logo">
+        </a>
+        {% else %}
+        <a href="{% url 'musicapp:homepage' %}">
+            <img src="{% static 'images/logo.png' %}" alt="Logo" class="logo">
+        </a>
+        {% endif %}
+
+        {% if authapp %}
+        
+        {% else %}
+        {% include 'searchbar.html' %}
+        {% endif %}
+
+        {% if request.user.is_authenticated %}
+        <div class="profile-rightcorner d-inline-flex justify-content-between align-items-center">
+            
+            {% if request.user.customuser %}
+                {% if request.user.image %}
+                <a href="{% url 'musicapp:editprofilepage' %}">
+                    <img src="{{request.user.image.url}}" alt="Profile" class="profile-image">
+                </a>
+                {% else %}
+                <a href="{% url 'musicapp:editprofilepage' %}">
+                    <img src="{% static 'images/logo.png' %}" alt="Profile" class="profile-image">
+                </a>
+                {% endif %}
+            {% else %}
+                {% if request.user.image %}
+                <a href="{% url 'artistapp:editprofilepage' %}">
+                    <img src="{{request.user.image.url}}" alt="Profile" class="profile-image">
+                </a>
+                {% else %}
+                <a href="{% url 'artistapp:editprofilepage' %}">
+                    <img src="{% static 'images/logo.png' %}" alt="Profile" class="profile-image">
+                </a>
+                {% endif %}
+            {% endif %}
+            <div class="sidebarmenu">
+                <button class="openbtn" onclick="openNav()">&#9776;</button>
+            </div>
+        </div>
+        {% else %}
+        <div class="rightcorner d-inline-flex">
+            <div class="auth-buttons">
+                <a href="{% url 'authapp:usersignup' %}" class="btn btn-secondary">Sign Up</a>
+                <a href="{% url 'authapp:usersignin' %}" class="btn btn-secondary">Sign In</a>
+            </div>
+            <div class="sidebarmenu">
+                <button class="openbtn" onclick="openNav()">&#9776;</button>
+            </div>
+        </div>
+        {% endif %}
+            
+        <div class="sidebar" id="sidebar">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    
+            <a href="{% url 'musicapp:playlistspage' %}">Playlists</a>
+            <a href="{% url 'artistapp:editprofilepage' %}">Profile</a>
+	    {% if request.user.is_authenticated %}
+            <a href="{% url 'authapp:logout' %}">Sign Out</a>
+            {% endif %}
+        </div>
+    </header>
+
+    <main>
+        {% block main %}
+        {% endblock %}
+    </main>
+
+    <footer class="text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="{% url 'musicapp:homepage' %}" class="text-white">Home</a></li>
+                        <li><a href="{% url 'authapp:artistsignup' %}" class="text-white">Artist SignUp</a></li>
+                        <li><a href="{% url 'authapp:artistsignin' %}" class="text-white">Artist SignIn</a></li>
+                        <li><a href="{% url 'musicapp:homepage' %}" class="text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Social Media</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="https://github.com/iamgokulchowdary" class="text-white">Facebook</a></li>
+                        <li><a href="https://github.com/iamgokulchowdary" class="text-white">Twitter</a></li>
+                        <li><a href="https://github.com/iamgokulchowdary" class="text-white">Instagram</a></li>
+			<li><a href="https://github.com/iamgokulchowdary" class="text-white">GitHub</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Support</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="https://www.linkedin.com/in/iamgokulchowdary" class="text-white">FAQ</a></li>
+                        <li><a href="https://www.linkedin.com/in/iamgokulchowdary" class="text-white">Help Desk</a></li>
+                        <li><a href="https://www.linkedin.com/in/iamgokulchowdary" class="text-white">Forums</a></li>
+			<li><a href="https://www.linkedin.com/in/iamgokulchowdary" class="text-white">LinkedIn</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.jquery.min.js"></script>
+
+
+    <script src="{% static 'js/sidebar.js' %}"></script>
+    <script src="{% static 'js/homepage.js' %}"></script>
+    <script src="{% static 'js/formstyle.js' %}"></script>
+    {% block javascript %}
+    {% endblock %}
+</body>
+</html>

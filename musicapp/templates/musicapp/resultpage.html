@@ -1,0 +1,92 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/resultpage.css' %}">
+{% endblock %}
+
+{% block main %}
+
+<section>
+    <!-- Result songs,albums and playlist goes here -->
+    <div class="resultsection">
+        <h4>Results for : {{query}}</h4>
+        {% if albums %}
+        <div class="resultalbums">
+            <h4>Albums</h4>
+            <div class="tiles scrollbar">
+                {% for album in albums %}
+                <a href="{% url 'musicapp:albumpage' album.id %}">
+                    <div class="tile">
+                        <img src="{{album.image.url}}" alt="song img">
+                        <span class="songname">{{album.name}}</span>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+         </div>
+        {% endif %}
+
+        {% if artists %}
+        <div class="resultalbums">
+            <h4>Artists</h4>
+            <div class="tiles scrollbar">
+                {% for artist in artists %}
+                <a href="{% url 'musicapp:artistpage' artist.id %}">
+                    <div class="tile">
+                        {% if artist.user.image %}
+                        <img src="{{artist.user.image.url}}" alt="song img">
+                        {% else %}
+                        <img src="{% static 'images/avator.png' %}" alt="song img">
+                        {% endif %}
+                        <span class="songname">{{artist.user.username}}</span>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+         </div>
+        {% endif %}
+
+        {% if playlists %}
+        <div class="resultalbums">
+            <h4>Playlists</h4>
+            <div class="tiles scrollbar">
+                {% for playlist in playlists %}
+                <a href="{% url 'musicapp:playlistpage' playlist.id %}">
+                    <div class="tile">
+                        <img src="{{playlist.image.url}}" alt="song img">
+                        <span class="songname">{{playlist.name}}</span>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+         </div>
+        {% endif %}
+        
+        {% if songs %}
+        <div class="resultsongs">
+           <h4>Songs</h4>
+           <div class="table-responsive">
+              <table class="table table-borderless">
+                    <thead>
+                    <tr>
+                       <th scope="col" colspan="2">Song Name</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for song in songs %}
+                        <tr>
+                            <td>{{song.name}}</td>
+                            <td><a href="{% url 'musicapp:songpage' song.id %}">play</a></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+              </table>
+           </div>
+        </div>
+        {% endif %}
+    </div>
+
+ </section>
+
+{% endblock %}

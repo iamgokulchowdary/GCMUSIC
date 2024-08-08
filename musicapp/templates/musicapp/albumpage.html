@@ -1,0 +1,54 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/artistpage.css' %}">
+{% endblock %}
+
+{% block main %}
+<section class="artistdetail">
+    <!-- artistdetails goes here -->
+    <div class="container">
+        <div class="artist-img">
+            {% if album.image %}
+            <img src="{{album.image.url}}" alt="ArtistImage">
+            {% else %}
+            <img src="{% static 'images/avator.png' %}" alt="ArtistImage">
+            {% endif %}
+        </div>
+        <div class="container flex-col">
+            <p>Name : {{album.name}}</p>
+            <p>Owner : {{album.owner}}</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <!-- artist songs,albums and more goes here -->
+     <div class="artistsection">
+        {% if songs %}
+        <div class="artistsongs">
+            <h4>Latest Songs</h4>
+            <div class="table-responsive">
+                <table class="table table-borderless">
+                    <thead>
+                      <tr>
+                        <th scope="col" colspan="2">Song Name</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        {% for song in songs %}
+                        <tr>
+                            <td>{{song.name}}</td>
+                            <td><a href="{% url 'musicapp:songpage' song.id %}">play</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {% endif %}
+     </div>
+
+</section>
+{% endblock %}

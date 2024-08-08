@@ -1,0 +1,87 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/songpage.css' %}">
+<link rel="stylesheet" href="{% static 'css/modal.css' %}">
+{% endblock %}
+
+{% block main %}
+<section>
+    <!-- Add to playlist modal -->
+    <div class="modal fade" id="addtoplaylistmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+           <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Add To Playlist</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+              </button>
+           </div>
+           <div class="modal-body">
+              <form action="{% url 'musicapp:addtoplaylistview' song.id %}" method="post">
+                {% csrf_token %}
+                {% for playlist in playlists %}
+                    <div class="form-check">
+                        {% if song in playlist.songs.all %}
+                        <input class="form-check-input" type="checkbox" value={{playlist.id}} id="playlist{{ playlist.id }}" name="playlists" checked>
+                        <label class="form-check-label" for="playlist{{ playlist.id }}">
+                            {{ playlist.name }}
+                        </label>
+                        {% else %}
+                        <input class="form-check-input" type="checkbox" value={{playlist.id}} id="playlist{{ playlist.id }}" name="playlists">
+                        <label class="form-check-label" for="playlist{{ playlist.id }}">
+                            {{ playlist.name }}
+                        </label>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+                 <div class="form-group">
+                     <button type="submit" class="submit">Submit</button>
+                 </div>
+             </form>
+           </div>
+           
+        </div>
+        </div>
+     </div>
+
+    <div class="player-conatiner">
+        <div class="songimg">
+            <img src="{{song.album.image.url}}" alt="Song Image">
+        </div>
+
+        <div class="songdetails">
+            <h4>{{song.name}}</h4>
+            <p>{{song.album}}</p>
+            <p>{{song.artists.all|join:', '}}</p>
+        </div>
+
+        <div class="playertrackcontrols">
+            <div class="trackcontrol">
+                <input type="range" name="songlength" class="slider" id="songlength" min="1" max="100" value="0">
+            </div>
+            <div class="volumecontrol">
+                <input type="range" name="volumeslider" class="slider" id="volumeslider" min="1" max="100" value="0">
+            </div>
+        </div>
+
+        <div class="playercontrols">
+            <button id="previous"><i class="fa-duotone fa-solid fa-circle-chevron-left"></i></button>
+            <button id="play"><i class="fa-solid fa-play"></i></button>
+            <button id="pause"><i class="fa-solid fa-pause"></i></button>
+            <button id="next"><i class="fa-duotone fa-solid fa-circle-chevron-right"></i></button>
+            <button id="repeat"><i class="fa-solid fa-repeat"></i></button>
+            <button id="like"><i class="fa-solid fa-heart"></i></button>
+            <button id="addtoplaylist" data-toggle="modal" data-target="#addtoplaylistmodal"><i class="fa-solid fa-plus"></i></button>
+        </div>
+
+        <audio id="audio" src="{{ song.file.url }}"></audio>
+        
+    </div>
+</section>
+{% endblock %}
+
+{% block javascript %}
+<script src="{% static 'js/songpage.js' %}"></script>
+{% endblock %}

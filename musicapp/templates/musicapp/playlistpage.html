@@ -1,0 +1,116 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/playlistpage.css' %}">
+{% endblock %}
+
+{% block main %}
+<!-- edit playlist Modal -->
+<div class="modal fade" id="editplaylistmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+       <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Edit Playlist</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+          </button>
+       </div>
+       <div class="modal-body">
+          <form action="{% url 'musicapp:updateplaylistview' playlist.id %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+             <div class="form-group">
+                 <label for="name">Name</label>
+                 <input type="text" id="name" name="name" value="{{playlist.name}}" required>
+             </div>
+             <div class="form-group">
+                 <label for="image">Upload Image</label>
+                 <input type="file" id="image" name="image" accept="image/*" required>
+             </div>
+             <div class="form-group">
+                 <button type="submit" class="submit">Submit</button>
+             </div>
+         </form>
+       </div>
+       
+    </div>
+    </div>
+ </div>
+
+<!-- Content goes here -->
+<section class="artistdetail">
+    <!-- artistdetails goes here -->
+    <div class="container">
+        <div class="artist-img">
+            <img src="{{playlist.image.url}}" alt="ArtistImage">
+        </div>
+        <div class="container flex-col">
+            <p>Name : {{playlist.name}}</p>
+            <p>Followers : <span id="followerscount">{{playlist.followers.count}}</span></p>
+            <p>Owner : {{playlist.owner}}</p>
+            <div class="action-btn">
+                <!-- <button>Follow</button> -->
+                {% if request.user.is_authenticated %}
+                    <input type="hidden" name="csrftoken" value="{{ csrf_token }}">
+
+                    {% if request.user.customuser == playlist.owner %}
+                    <!-- edit playlist trigger -->
+                    <button class="editplaylistbtn warning-bg" id="editplaylistbtn" data-toggle="modal" data-target="#editplaylistmodal">
+                        <i class="fa-solid fa-pen-to-square"></i> Edit
+                    </button>
+
+                    {% elif request.user.customuser != playlist.owner and request.user.customuser in playlist.followers.all %}
+                    <button type="button" id="followunfollowbtn" data-playlistid="{{ playlist.id }}" data-action="unfollow">UnFollow</button>
+
+                    {% elif request.user.customuser != playlist.owner and request.user.customuser not in playlist.followers.all %}
+                    <button type="button" id="followunfollowbtn" data-playlistid="{{ playlist.id }}" data-action="unfollow">Follow</button>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <!-- artist songs,albums and more goes here -->
+     <div class="artistsection">
+
+        <div class="artistsongs">
+            <h4>Top Songs</h4>
+            <div class="table-responsive">
+                <table class="table table-borderless">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col" colspan="2">Song Name</th>
+                        
+                      </tr>
+                    </thead>
+                    <tbody>
+                        {% for song in playlist.songs.all %}
+                        <tr id="song-{{ song.id }}">
+                            <td>{{forloop.counter}}</td>
+                            <td>{{song.name}}</td>
+                            <td>
+                                <div class="actions">
+                                    <a href="{% url 'musicapp:songpage' song.id %}">Play</a>
+                                    {% if request.user.customuser == playlist.owner %}
+                                    <button class="deletesong" data-playlistid="{{ playlist.id }}" data-songid="{{ song.id }}">Delete</button>
+                                    {% endif %}
+                                </div>
+                            </td>
+                        </tr>
+                      {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+     </div>
+
+</section>
+{% endblock %}
+
+{% block javascript %}
+<script src="{% static 'js/followplaylist.js' %}"></script>
+{% endblock %}

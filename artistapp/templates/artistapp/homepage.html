@@ -1,0 +1,12 @@
+{% extends 'index.html' %}
+
+{% block main %}
+
+{% if request.user.is_authenticated %}
+
+<a href="{% url 'artistapp:createalbum' %}">CreateAlbum</a><hr>
+<a href="{% url 'artistapp:uploadsong' %}">Upload Song</a>
+
+{% endif %}
+
+{% endblock %}

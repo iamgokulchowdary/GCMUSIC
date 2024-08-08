@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url('variables.css');
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    font-family: "Open Sans", sans-serif;
+}
+
+body header {
+    background-color: var(--primary-background);
+    color: white;
+    padding: 0;
+    width: 100%;
+}
+
+body header img.logo {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+
+body header form.search-bar {
+    width: 40%;
+    display: flex;
+    position: relative;
+}
+
+body header form.search-bar input {
+    border-radius: 2em;
+    padding: 0 0;
+    box-shadow: none;
+    outline: none;
+}
+
+body header form.search-bar .btn-search {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 2em;
+    background-color: var(--primary-background);
+    border: none;
+    color: var(--primary-text);
+}
+
+body header form.search-bar .btn-search:hover{
+    background-color: var(--hover-background);
+    color: var(--primary-text);
+}
+
+body header a img.profile-image {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+
+body header div.auth-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+body header div.auth-buttons .btn {
+    border-radius: 2em;
+    padding: 5px 15px;
+}
+
+body header div.auth-buttons a.btn-secondary {
+    background-color: var(--info-color);
+    border: none;
+}
+body header div.auth-buttons a.btn-secondary:hover{
+    background-color: var(--success-color);
+}
+
+main {
+    flex-grow: 1;
+    padding: 0;
+    margin-bottom: 1em;
+}
+
+footer {
+    background-color: var(--primary-background);
+    color: white;
+    padding: 20px 0;
+    width: 100%;
+    margin-top: auto;
+    position: relative;
+}
+
+
+
+.scrollbar{
+    overflow-x: auto;
+}
+
+::-webkit-scrollbar-button{
+    color: blue;
+}
+
+@media (max-width: 600px) {
+    header, .rightcorner {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    header .rightcorner{
+        width: 100%;
+    }
+
+    header .profile-rightcorner{
+        width: 100%;
+        flex-direction: row-reverse;
+        justify-content: center;
+        align-content: center;
+    }
+    
+    body header img.logo {
+        height: 40px;
+        width: 40px;
+        margin-bottom: 10px;
+    }
+
+    body header form.search-bar {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    body header form.search-bar input {
+        padding-left: 10px;
+        padding-right: 30px;
+    }
+
+    body header form.search-bar .btn-search {
+        padding: 0 10px;
+    }
+
+    body header div.auth-buttons {
+        flex-direction: column;
+        gap: 5px;
+        width: 100%;
+    }
+
+    body header div.auth-buttons .btn {
+        width: 100%;
+    }
+}

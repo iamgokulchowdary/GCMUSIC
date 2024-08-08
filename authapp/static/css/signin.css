@@ -1,0 +1,35 @@
+/* Sign-in form styles */
+main div.signin-form-container {
+    width: 100%;
+    max-width: 400px;
+    background-color: var(--primary-background);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px var(--secondary-text);
+    margin-top: 20px;
+    color: var(--primary-text);
+}
+
+main div.signin-form-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+main div.signin-form-container form div.form-group {
+    margin-bottom: 15px;
+}
+
+main div.signin-form-container button.btn {
+    border-radius: 2em;
+}
+
+@media (max-width: 600px) {
+    main div.signin-form-container {
+        width: 100%;
+        padding: 10px;
+    }
+
+    main div.signin-form-container h2 {
+        font-size: 1.5em;
+    }
+}

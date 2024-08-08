@@ -1,0 +1,39 @@
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group .chosen-container {
+    display: block;
+    width: 100%;
+    font-weight: bold;
+}
+
+.form-group .chosen-container-single{
+    line-height: 3em;
+    border: 1px solid var(--primary-text);
+    border-radius: 0.25rem;
+    width: 100%;
+}
+
+.chosen-container .chosen-drop {
+    border: none;
+}
+
+.chosen-container .chosen-single {
+    line-height: 2.5em;
+    border: 1px solid var(--primary-text);
+    border-radius: 0.25rem;
+    width: 100%;
+}
+
+.chosen-container-multi .chosen-choices {
+    line-height: 2.5em;
+    border: 1px solid var(--primary-text);
+    border-radius: 0.25rem;
+    width: 100%;
+}
+.chosen-container .chosen-results {
+    max-height: 10em;
+    overflow-y: auto;
+}

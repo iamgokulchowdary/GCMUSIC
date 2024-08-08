@@ -1,0 +1,108 @@
+main section{
+    background-color: var(--primary-background);
+    margin: 1em;
+    border-radius: 1em;
+    font-size: 1em;
+    font-weight: bold;
+    color: var(--primary-text);
+}
+
+main section .resultsection{
+    display: flex;
+    flex-direction: column;
+    padding: 1em 1em;
+    gap: 1em;
+}
+
+main section .resultalbums{
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - 1em);
+}
+
+main section .resultalbums .title{
+    margin-bottom: 0.5em;
+}
+
+main section .resultalbums .tiles{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+main section .resultalbums .tiles a{
+    text-decoration: none;
+    color: var(--secondary-color);
+    font-size: 17px;
+    font-weight: bold;
+}
+
+main section .resultalbums .tiles .tile{
+    display: flex;
+    flex-direction: column;
+    max-width: 6em;
+    margin-right: 1em;
+}
+
+main section .resultalbums .tiles .tile img{
+    width: 5em;
+    height: 5em;
+    border-radius: 50%;
+    margin-bottom: 0.1em;
+}
+
+main section .resultalbums .tiles .tile span{
+    font-size: 0.8em;
+}
+
+main section .resultsongs table{
+    color: var(--primary-text);
+}
+
+main section .resultsongs table thead{
+    border-top: 0.2em solid var(--primary-text);
+    border-bottom: 0.2em solid var(--primary-text);
+}
+
+main section .resultsongs table tbody tr{
+    border-bottom: 0.2em solid var(--disabled-text);
+}
+
+main section .resultsongs table a{
+    text-decoration: none;
+    color: var(--primary-text);
+    background-color: var(--info-color);
+    padding: 0.25em 1em;
+    border-radius: 1em;
+}
+
+@media (max-width: 768px) {
+    main section .resultalbums .tiles {
+        justify-content: center;
+        gap: 1em;
+    }
+
+    main section .resultsongs table {
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 480px) {
+    main section {
+        margin: 0.5em;
+        font-size: 0.9em;
+    }
+
+    main section .resultalbums .tiles {
+        /* flex-direction: column; */
+        align-items: center;
+    }
+
+    main section .resultalbums .tiles .tile {
+        max-width: 8em;
+    }
+
+    main section .resultsongs table {
+        font-size: 0.8em;
+    }
+}

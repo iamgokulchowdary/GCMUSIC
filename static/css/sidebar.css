@@ -1,0 +1,49 @@
+div.sidebar{
+    height: 100%;
+    width: 0;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: var(--hover-background); 
+    overflow-x: hidden; 
+    padding-top: 60px;
+    transition: 0.3s;
+}
+
+div.sidebar a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 1em;
+    font-weight: bold;
+    color: var(--primary-text);
+    display: block;
+    transition: 0.3s;
+}
+
+div.sidebar a:hover {
+    color: var(--secondary-text);
+}
+
+div.sidebar .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+header .sidebarmenu .openbtn {
+    display: block;
+    font-size: 20px;
+    cursor: pointer;
+    background-color: var(--primary-background);
+    color: var(--primary-text);
+    padding: 0 10px;
+    border: none;
+    border-radius: 2em;
+}
+
+header .sidebarmenu .openbtn:hover {
+    background-color: var(--hover-background);
+}

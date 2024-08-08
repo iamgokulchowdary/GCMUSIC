@@ -1,0 +1,12 @@
+from django.shortcuts import render, HttpResponse
+from .models import *
+
+# Create your views here.
+# genreslist = [('Alternative', 'Alternative'), ('Blues', 'Blues'), ('Classical', 'Classical'), ('Country', 'Country'), ('Dance', 'Dance'), ('Electronic', 'Electronic'), ('Hip Hop', 'Hip Hop'), ('Jazz', 'Jazz'), ('Pop', 'Pop'), ('R&B', 'R&B'), ('Reggae', 'Reggae'), ('Rock', 'Rock'), ('Metal', 'Metal'), ('Folk', 'Folk'), ('Soul', 'Soul'), ('Punk', 'Punk'), ('Disco', 'Disco'), ('Funk', 'Funk'), ('Gospel', 'Gospel'), ('Latin', 'Latin'), ('World', 'World'), ('Ambient', 'Ambient'), ('House', 'House'), ('Techno', 'Techno'), ('Trance', 'Trance'), ('Drum and Bass', 'Drum and Bass'), ('Dubstep', 'Dubstep'), ('Bluegrass', 'Bluegrass'), ('Industrial', 'Industrial'), ('Ska', 'Ska'), ('New Age', 'New Age'), ('Opera', 'Opera'), ('Soundtrack', 'Soundtrack'), ("Children's Music", "Children's Music"), ('Christmas', 'Christmas'), ('Comedy', 'Comedy'), ('Spoken Word', 'Spoken Word'), ('Traditional', 'Traditional'), ('Swing', 'Swing'), ('Bossa Nova', 'Bossa Nova'), ('Tango', 'Tango'), ('Samba', 'Samba'), ('Flamenco', 'Flamenco'), ('K Pop', 'K Pop'), ('J Pop', 'J Pop'), ('Anime', 'Anime'), ('Video Game Music', 'Video Game Music'), ('Bollywood', 'Bollywood'), ('Bhangra', 'Bhangra'), ('Ghazal', 'Ghazal'), ('Qawwali', 'Qawwali'), ('Indian Classical', 'Indian Classical'), ('Hindustani Classical', 'Hindustani Classical'), ('Carnatic Classical', 'Carnatic Classical'), ('Bhajan', 'Bhajan'), ('Devotional', 'Devotional'), ('Lavani', 'Lavani'), ('Dandiya', 'Dandiya'), ('Garba', 'Garba'), ('Rabindra Sangeet', 'Rabindra Sangeet'), ('Sufi', 'Sufi'), ('Indi-Pop', 'Indi-Pop'), ('Kollywood', 'Kollywood'), ('Tollywood', 'Tollywood'), ('Sandalwood', 'Sandalwood'), ('Mollywood', 'Mollywood'), ('Marathi Film Music', 'Marathi Film Music'), ('Pollywood', 'Pollywood'), ('Rajasthani Folk', 'Rajasthani Folk'), ('Baul', 'Baul'), ('Garo', 'Garo'), ('Khasi', 'Khasi'), ('Jhumar', 'Jhumar'), ('Manipuri', 'Manipuri'), ('Nagpuri', 'Nagpuri')]
+
+def StartDBView(request):
+    # for lang in genreslist:
+    #     obj = Genre.objects.create(genre = lang[0])
+    #     obj.save()
+    #     print(lang[0])
+    return HttpResponse('''<h1>hello</h1>''')

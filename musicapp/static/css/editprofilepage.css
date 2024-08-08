@@ -1,0 +1,65 @@
+.flex-row{
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    width: 100%;
+    padding: auto;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-col{
+    display: flex;
+    flex-direction: column;
+}
+
+.warning-bg{
+    background-color: var(--warning-color);
+    font-weight: bold;
+}
+
+main section{
+    background-color: var(--primary-background);
+    margin: 1em;
+    border-radius: 1em;
+    padding: 1em;
+
+    color: var(--primary-text);
+    font-weight: bold;
+}
+
+main section .userimg{
+    width: fit-content;
+    margin: auto;
+
+}
+
+main section img{
+    max-width: 10em;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+}
+
+main section .userdata-form {
+    max-width: 600px;
+}
+
+main section .userdata-form input, select, option{
+    font-weight: bold;
+    border: 2px solid var(--primary-text);
+}
+
+main section .userdata-form button:hover{
+    background-color: var(--info-color);
+    color: var(--primary-text);
+}
+
+@media (max-width: 600px) {
+    main section{
+        margin: 0.5em;
+        padding: 0.5em;
+    }
+}

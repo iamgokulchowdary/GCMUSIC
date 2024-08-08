@@ -1,0 +1,61 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block stylesheet %}
+<link href="{% static '/css/signin.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block main %}
+
+<div class="d-flex flex-grow-1 justify-content-center align-items-center pb-4">
+    <div class="signin-form-container">
+        <h2>Sign Up | {{authtype}}</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" name="username" id="username" placeholder="Username" maxlength="30" required>
+                {% if form.username.errors %}
+                <div class="alert alert-danger">
+                    <li>Username Already Exist</li>
+                </div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email" maxlength="254" placeholder="Email" required>
+                {% if form.email.errors %}
+                <div class="alert alert-danger">
+                    <li>Email Already Exist</li>
+                </div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="password1">Password</label>
+                <input type="password" class="form-control" id="password1" name="password1" placeholder="Password" required>
+                {% if form.password1.errors %}
+                <div class="alert alert-danger">
+                    {{ form.password1.errors }}
+                </div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="password2">Confirm Password</label>
+                <input type="password" class="form-control" id="password2" name="password2" placeholder="Confirm Password" required>
+                {% if form.password2.errors %}
+                <div class="alert alert-danger">
+                    {{ form.password2.errors }}
+                </div>
+                {% endif %}
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+        </form>
+        {% if form.non_field_errors %}
+        <div class="alert alert-danger mt-3">
+            {{ form.non_field_errors }}
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/playlists.css' %}">
+<link rel="stylesheet" href="{% static 'css/modal.css' %}">
+{% endblock %}
+
+{% block main %}
+<section class="section-container">
+    <!-- create playlist Modal -->
+    <div class="modal fade" id="createplaylistmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+           <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Create Playlist</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+              </button>
+           </div>
+           <div class="modal-body">
+              <form action="{% url 'musicapp:createplaylistview' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                 <div class="form-group">
+                     <label for="name">Name</label>
+                     <input type="text" id="name" name="name" required>
+                 </div>
+                 <div class="form-group">
+                     <label for="image">Upload Image</label>
+                     <input type="file" id="image" name="image" accept="image/*" required>
+                 </div>
+                 <div class="form-group">
+                     <button type="submit" class="submit">Submit</button>
+                 </div>
+             </form>
+           </div>
+           
+        </div>
+        </div>
+     </div>
+
+    <div class="title-bar">
+        <div class="title">
+           <h3>PlayLists</h3>
+        </div>
+
+        {% if request.user.is_authenticated %}
+        <!-- create playlist trigger -->
+        <button class="createplaylistbtn" id="createplaylistbtn" data-toggle="modal" data-target="#createplaylistmodal">
+          <i class="fa-solid fa-plus"></i> Playlist
+        </button>
+        {% endif %}
+
+    </div>
+
+    <div class="tiles">
+        {% for playlist in playlists %}
+        <a href="{% url 'musicapp:playlistpage' playlist.id %}">
+           <div class="tile">
+              <img src="{{playlist.image.url}}" alt="song img">
+              <span class="songname">{{playlist.name}}</span>
+           </div>
+        </a>
+        {% endfor %}
+     </div>
+</section>
+{% endblock %}

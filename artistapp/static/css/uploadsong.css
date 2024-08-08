@@ -1,0 +1,19 @@
+main section{
+    margin: 1em;
+    color: var(--primary-text);
+    font-weight: bold;
+}
+
+main section .container{
+    display: flex;
+    flex-direction: column;
+    background-color: var(--primary-background);
+    align-items: center;
+    width: fit-content;
+    border-radius: 1em;
+    padding: 1em;
+}
+
+main section form input{
+    border: 2px solid var(--primary-text);
+}

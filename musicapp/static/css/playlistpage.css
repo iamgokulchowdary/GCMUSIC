@@ -1,0 +1,177 @@
+main section{
+    background-color: var(--primary-background);
+    margin: 1em;
+    border-radius: 1em;
+    font-size: 1em;
+    font-weight: bold;
+    color: var(--primary-text);
+}
+
+main section.artistdetail .container{
+    display: flex;
+    gap: 0 1em;
+    padding: 0.5em 1em;
+    margin: 0;
+}
+
+main section.artistdetail .flex-col{
+    flex-direction: column;
+}
+
+main section.artistdetail img{
+    max-width: 10em;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1/1;
+}
+
+main section.artistdetail button{
+    border: none;
+    border-radius: 1em;
+    background-color: var(--info-color);
+    color: var(--primary-text);
+    font-weight: bold;
+    padding: 0.25em 0.5em;
+}
+
+main section.artistdetail button:hover{
+    background-color: var(--hover-background);
+}
+
+main section .artistsection{
+    display: flex;
+    flex-direction: column;
+    padding: 1em 1em;
+    gap: 1em;
+}
+
+main section .artistsongs table{
+    color: var(--primary-text);
+}
+
+main section .artistsongs table thead{
+    border-top: 0.2em solid var(--primary-text);
+    border-bottom: 0.2em solid var(--primary-text);
+}
+
+main section .artistsongs table tbody tr{
+    border-bottom: 0.2em solid var(--disabled-text);
+}
+
+main section .artistsongs table a{
+    text-decoration: none;
+    color: var(--primary-text);
+    background-color: var(--info-color);
+    padding: 0.25em 1em;
+    border-radius: 1em;
+}
+
+main section .artistsongs table div a{
+    width: fit-content;
+}
+
+main section .artistsongs table div button{
+    border: none;
+    border-radius: 1em;
+    background-color: var(--danger-color);
+    color: var(--primary-text);
+    padding: 0.25em 1em;
+    font-weight: bold;
+    width: fit-content;
+}
+
+main section button.warning-bg{
+    background-color: var(--warning-color);
+    color: var(--secondary-text);
+}
+
+/* edit playlist modal styling */
+main .modal .modal-body form {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    font-size: 1em;
+    font-weight: bold;
+    align-items: stretch; /* Ensures inputs take full width */
+}
+
+main .modal .modal-body form .form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Aligns input elements to the start */
+}
+
+main .modal .modal-body form .form-group input {
+    display: block;
+    width: 100%; /* Makes input elements take full width */
+    padding: 0.5em; /* Adds padding for better appearance */
+    border: 1px solid var(--disabled-text); /* Adds border for better visibility */
+    border-radius: 4px; /* Rounds corners slightly */
+    box-sizing: border-box; /* Ensures padding and border are included in the element's total width and height */
+}
+
+main .modal .modal-body form .submit {
+    width: fit-content;
+    align-self: center; /* Centers the submit button */
+    padding: 0.5em 1em; /* Adds padding for better appearance */
+    border: none; /* Removes default border */
+    border-radius: 4px; /* Rounds corners slightly */
+    background-color: var(--primary-background); /* Uses your primary background color */
+    color: var(--primary-text); /* Uses your primary text color */
+    cursor: pointer; /* Changes cursor to pointer on hover */
+}
+
+main .modal .modal-body form .submit:hover {
+    background-color: var(--hover-background); /* Changes background color on hover */
+}
+
+@media (max-width: 768px) {
+    main section.artistdetail .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    main section.artistdetail img {
+        max-width: 8em;
+    }
+
+    main section.artistdetail p {
+        text-align: center;
+        margin: 0.5em 0;
+    }
+
+    main section.artistdetail .action-btn {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    main section .artistsongs table {
+        font-size: 0.9em;
+    }
+
+    main section .artistsongs table div{
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    main section {
+        margin: 0.5em;
+        font-size: 0.9em;
+    }
+
+    main section.artistdetail img {
+        max-width: 6em;
+    }
+
+    main section.artistdetail button {
+        padding: 0.2em 0.4em;
+    }
+
+    main section .artistsongs table {
+        font-size: 0.8em;
+    }
+}
